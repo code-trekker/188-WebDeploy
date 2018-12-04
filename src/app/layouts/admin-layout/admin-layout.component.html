@@ -1,0 +1,102 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="red">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="main-panel">
+        <!-- <app-navbar></app-navbar> -->
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+        <div style="padding: 10px">
+            <!-- <h1>Homepage Content Here</h1> -->
+            <div style="padding: 20px;">
+                <div class="row text-center charts">
+                    <div class="card" style="padding: 10px">
+                        <canvas #lineChart width="1183" height="318" class="chartjs-render-monitor">{{ chart }}</canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- table for exercises -->
+            <div style="padding: 0 20px 20px 20px; margin-top: -1.5%">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <h4 style="padding-top: 10px">Exercises</h4>
+                            <table class="table table-striped table-hover table-borderless" [mfData]="exercises" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSortBy]="eid" [mfSortOrder]="desc" style="padding: 10px;">
+                                <thead>
+                                  <tr style="color: #F96332">
+                                    <th style="display: none">
+                                      ID
+                                    </th>
+                                    <th>
+                                      Name
+                                    </th>
+                                    <th>
+                                      Category
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of mf.data">
+                                        <td style="display: none">{{item.eid}}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.category}}</td>
+                                    </tr>
+                                </tbody>
+                              </table>
+                              <a routerLink="/exercise" style="color: #F05F40; padding-bottom: 20px">See more</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="height: 408px;">
+                            <h4 style="padding-top: 10px">Routines</h4>
+                            <table class="table table-striped table-hover table-borderless" style="padding: 10px;">
+                                <thead>
+                                  <tr style="color: #F96332">
+                                    <th>
+                                      Name
+                                    </th>
+                                    <th>
+                                      Muscle Area
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of routines | slice:0:5 ; let i = index">
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.muscle_area}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a routerLink="/routine" style="color: #F05F40; padding-bottom: 20px">See more</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card" style="height: 408px">
+                            <h4 style="padding-top: 10px">Workouts</h4>
+                            <table class="table table-striped table-hover table-borderless" style="padding: 10px;">
+                                    <thead>
+                                      <tr style="color: #F96332">
+                                        <th>
+                                          Day
+                                        </th>
+                                        <th>
+                                          Routine
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let work of workouts | slice:0:5; let i = index;">
+                                            <td>{{work.day}}</td>
+                                            <td>{{work.routine}}</td>
+                                        </tr>
+                                    </tbody>
+                                  </table>
+                                  <a routerLink="/workout" style="color: #F05F40; padding-bottom: 20px">See more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+.content {
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 17.5%;
+    overflow-y: hidden;
+}
+
+:host ::ng-deep a.page-link::after {
+    background-color: #e0573a;
+}

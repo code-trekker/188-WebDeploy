@@ -1,0 +1,195 @@
+<div class="sidebar" data-color="red">
+  <app-sidebar></app-sidebar>
+</div>
+
+<div class="content" style="padding-top: 10px">
+  <div>
+    <h1>&emsp;</h1><h1 style="display: inline">Routines</h1>&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-lg" style="border-radius: 20px; margin-top: -0.5%" (click)="open(content)">
+      <span><i class="fa fa-plus"></i></span>&nbsp;ADD
+    </button>
+
+    <table class="table table-striped table-hover table-borderless" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="9" [mfSortBy]="eid" [mfSortOrder]="desc" style="padding: 10px;">
+      <thead>
+        <tr style="color: #F96332">
+          <th style="display: none">
+            ID
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Muscle Area
+          </th>
+          <th>
+            Exercises
+          </th>
+          <th style="display: none">
+            EID
+          </th>
+          <th width="20%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of mf.data; let i = index">
+              <td style="display: none">{{item.rid}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.muscle_area}}</td>
+              <td>{{item.exercise_list}}</td>
+              <td style="display: none">{{item.eid}}</td>
+              <td class="">
+                <!-- <button class="btn btn-sm btn-success" (click)="editRoutine(item);open(edit)"><span><i class="fa fa-pencil"></i></span></button>&nbsp; -->
+                <button class="btn btn-sm btn-danger" [swal]="{ title: 'Delete this routine?', type:'question', showCancelButton: true }"
+                (confirm)="removeRoutine(item)"><span><i class="fa fa-trash"></i></span></button>
+              </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+              <td colspan="4" >
+                  <mfBootstrapPaginator></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
+    </table>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header" style="font-family: 'Montserrat', sans-serif !important;">
+    <h4 class="modal-title text-center" id="modal-basic-title">Add New Routine</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="font-family: 'Montserrat', sans-serif !important;">
+      <form>
+        <div class="form-group">
+          <label for="name">Routine Name</label>
+          <input type="text" class="form-control" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" name="name" id="name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="muscle_area">Muscle Area</label>
+          <select class="form-control" id="muscle_area" [(ngModel)]="muscle_area" name="muscle_area" style="padding: 5px;">
+            <option value="Abs">Abs</option>
+            <option value="Chest">Chest</option>
+            <option value="Biceps">Biceps</option>
+            <option value="Back">Back</option>
+            <option value="Triceps">Triceps</option>
+            <option value="Traps">Traps</option>
+            <option value="Shoulders">Shoulders</option>
+            <option value="Legs">Legs</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label>Choose Exercise(s)</label>
+            <div class="row">
+              <div class="col-sm-10">
+                <select class="form-control" id="exercises" [(ngModel)]="field" name="exercise{{i}}" style="padding: 5px;">
+                  <option *ngFor="let e of exercises" [ngValue]="e">{{e.name}}</option>
+                </select>
+              </div>
+              <div class="col-sm-2" style="margin-left: -5%">
+                <button style="margin-top: 2px; width: 75px; height: 35px" class="btn btn-sm btn-success btn-block" (click)="addFieldValue(i);getData(field);"><span><i class="fa fa-plus"></i></span></button>
+              </div>
+            </div>
+        </div>
+          <div class="form-group" style="margin-top: -5%">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="font-size: 1em">Exercise</th>
+                  <th style="font-size: 1em">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let field of exerciseNames; let i = index">
+                  <td>
+                    {{field}}
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-danger" (click)="deleteFieldValue(i)"><span><i class="fa fa-trash"></i></span></button>
+                  </td>
+                </tr>
+                <!-- <tr>
+                  <td>
+                    <select class="form-control" id="exercises" [(ngModel)]="newRoutineExercise.data" name="exercise{{i}}{{i}}" style="padding: 5px;">
+                      <option *ngFor="let e of exercises" [ngValue]="e">{{e.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-success" (click)="addFieldValue(i)"><span><i class="fa fa-plus"></i></span></button>&nbsp;
+                  </td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+          
+      </form>
+  </div>
+  <div class="modal-footer" style="padding: 2%; font-family: 'Montserrat', sans-serif !important;">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click'); addRoutine()">Save</button>
+  </div>
+</ng-template>
+
+<!-- edit modal -->
+
+<ng-template #edit let-c="close" let-d="dismiss">
+    <div class="modal-header" style="font-family: 'Montserrat', sans-serif !important;">
+      <h4 class="modal-title text-center" id="modal-basic-title">Edit Routine</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="font-family: 'Montserrat', sans-serif !important;">
+        <form>
+          <div class="form-group">
+            <label for="editName">Routine Name</label>
+            <input type="text" class="form-control" [(ngModel)]="editName" [ngModelOptions]="{standalone: true}" name="editName" id="editName" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="editMuscleArea">Muscle Area</label>
+            <select class="form-control" id="editMuscleArea" [(ngModel)]="editMuscleArea" name="editMuscleArea" style="padding: 5px;">
+              <option value="Abs">Abs</option>
+              <option value="Chest">Chest</option>
+              <option value="Biceps">Biceps</option>
+              <option value="Back">Back</option>
+              <option value="Triceps">Triceps</option>
+              <option value="Traps">Traps</option>
+              <option value="Shoulders">Shoulders</option>
+              <option value="Legs">Legs</option>
+            </select>
+          </div>
+          <div class="form-group">
+              <label>Choose Exercise(s)</label>
+            </div>
+            <div class="form-group" style="margin-top: -5%">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th style="font-size: 1em">Exercise</th>
+                    <th style="font-size: 1em">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let field of fieldArray; let i = index">
+                    <td>
+                      <select class="form-control" id="exercises" [(ngModel)]="field.data" name="exercise{{i}}" style="padding: 5px;">
+                        <option *ngFor="let e of exercises" [ngValue]="e.eid">{{e.name}}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-success" (click)="addFieldValue(i);getData(field.data);"><span><i class="fa fa-plus"></i></span></button>&nbsp;
+                      <button class="btn btn-sm btn-danger" (click)="deleteFieldValue(i)"><span><i class="fa fa-trash"></i></span></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+        </form>
+    </div>
+    <div class="modal-footer" style="padding: 2%; font-family: 'Montserrat', sans-serif !important;">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click'); addRoutine()">Save</button>
+    </div>
+  </ng-template>

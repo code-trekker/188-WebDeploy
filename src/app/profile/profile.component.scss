@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+.content {
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 18.3%;
+    overflow-y: hidden;
+}
+
+:host ::ng-deep a.page-link::after {
+    background-color: #e0573a;
+}
+
+.hrstyle {
+    border: 1.2px solid #F05F40;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+input[type="number"] {
+    -moz-appearance: textfield;
+}

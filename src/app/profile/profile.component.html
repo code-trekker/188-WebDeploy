@@ -1,0 +1,100 @@
+<div class="sidebar" data-color="red">
+    <app-sidebar></app-sidebar>
+</div>
+<div class="content" style="padding-top: 10px; overflow-x: hidden !important">
+    <div>
+      <h1>&emsp;</h1><h1 style="display: inline">Profile</h1>&nbsp;&nbsp;&nbsp;
+      <button class="btn btn-lg" style="border-radius: 20px; margin-top: -0.5%" (click)="open(content)">
+        <span><i class="fa fa-pencil"></i></span>&nbsp;Edit
+      </button>
+    </div>
+    <br>
+    <br>
+    <div class="card" style="width: 77rem; padding: 15px;">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>First Name: <span style="font-weight: 200">{{first_name}}</span></h4>
+            </div>
+            <div class="col-md-6">
+                <h4>Last Name: <span style="font-weight: 200">{{last_name}}</span></h4>
+            </div>
+        </div>        
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Gender: <span style="font-weight: 200">{{gender}}</span></h4>
+            </div>
+            <div class="col-md-6">
+                <h4>Birthday: <span style="font-weight: 200">{{birthday}}</span></h4>
+            </div>
+        </div> 
+        <hr>
+        <h4>Lifestyle Type: <span style="font-weight: 200">{{lifestyle_type}}</span></h4>
+        <hr>
+        <h4>Workout Aim: <span style="font-weight: 200">{{workout_aim}}</span></h4>
+        <hr>
+        <h4>Weight: <span style="font-weight: 200">{{weight}}</span></h4>
+        <hr>
+        <h4>Height: <span style="font-weight: 200">{{height}}</span></h4>
+        <hr>
+        <h4>BMI: <span style="font-weight: 200">{{bmi}}</span></h4>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header" style="font-family: 'Montserrat', sans-serif !important;">
+      <h4 class="modal-title text-center" id="modal-basic-title">Edit Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="font-family: 'Montserrat', sans-serif !important;">
+      <form>
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" [(ngModel)]="first_name" name="first_name" id="first_name" placeholder="First Name">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" [(ngModel)]="last_name" name="last_name" id="last_name" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+          <label for="birthday">Day</label>
+          <input type="date" class="form-control" [(ngModel)]="birthday" [ngModelOptions]="{standalone: true}" name="birthday" id="birthday">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <input style="margin-left: 5%" type="radio" [(ngModel)]="gender" name="gender" id="gender" value="Male"> Male
+            <input style="margin-left: 5%" type="radio" [(ngModel)]="gender" name="gender" id="gender" value="Female"> Female
+            <input style="margin-left: 5%" type="radio" [(ngModel)]="gender" name="gender" id="gender" value="Other"> Other
+        </div>
+        <div class="form-group">
+          <label for="lifestyle_type">Lifestyle Type</label>
+          <select class="form-control" id="lifestyle_type" [(ngModel)]="lifestyle_type" name="lifestyle_type" style="padding: 5px;">
+            <option value="Active">Active</option>
+            <option value="Semi-active">Semi-active</option>
+            <option value="Sedentary">Sedentary</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="workout_aim">Workout Aim</label>
+          <select class="form-control" id="workout_aim" [(ngModel)]="workout_aim" name="workout_aim" style="padding: 5px;">
+            <option value="Ripped">Ripped</option>
+            <option value="Lean">Lean</option>
+            <option value="Balanced">Balanced</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="weight">Weight</label>
+          <input type="number" class="form-control" [(ngModel)]="weight" [ngModelOptions]="{standalone: true}" name="weight" id="weight" placeholder="in kilograms">
+        </div>
+        <div class="form-group">
+          <label for="height">Height</label>
+          <input type="number" class="form-control" [(ngModel)]="height" [ngModelOptions]="{standalone: true}" name="height" id="height" placeholder="in centimeters">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer" style="padding: 2%; font-family: 'Montserrat', sans-serif !important;">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click'); editProfile()">Save</button>
+    </div>
+  </ng-template>

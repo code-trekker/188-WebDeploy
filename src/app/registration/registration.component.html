@@ -1,0 +1,51 @@
+<div class="login-register" style="background-image:url(assets/images/background.jpg);">
+  <div class="row">
+    <div class="login-box card col-md-3">
+      <div class="card-body">
+        <form class="form-horizontal form-material" id="loginform">
+          <h3 class="box-title m-b-20 text-center">Sign Up</h3>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input class="form-control" required="" [(ngModel)]="username" name="username"  type="text" placeholder="Username">
+              <p class="text-danger" *ngIf="show1">Username is required</p>
+            </div>
+          </div>
+          <div class="form-group ">
+            <div class="col-xs-12">
+              <input class="form-control" required="" [(ngModel)]="password" name="password"  type="password" placeholder="Password">
+              <p class="text-danger" *ngIf="show2">Password is required</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input class="form-control" required="" [(ngModel)]="password2" name="password2" type="password" placeholder="Confirm Password">
+            </div>
+            <p class="text-danger" *ngIf="show3">Passwords do not match</p>
+            <!-- <p class="text-danger" *ngIf="show4">Username already exists!</p> -->
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12 container">
+              <a class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" 
+              (click)="registerUser()">Sign Up</a>
+            </div>
+          </div>
+          <div class="form-group m-b-0">
+            <div class="col-sm-12 text-center container-2">
+              Already have an account? <a class="text-info m-l-5" routerLink="/login"><b>Sign In</b></a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>  
+  </div>
+</div>
+
+<!-- <swal
+  #signUpSwal
+  title="Success"
+  text="Account registerd successfully!"
+  type="success"
+</swal> -->
+
+
+

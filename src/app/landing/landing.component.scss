@@ -1,0 +1,37 @@
+@import "../../assets/vendor/fontawesome-free/css/all.min.css";
+@import "../../assets/vendor/magnific-popup/magnific-popup.css";
+@import "../../assets/css/creative.css";
+
+.services {
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+
+.services:hover {
+    top: -10px;
+    p {
+        transition: ease 0.5s;
+        color: #F05F40 !important;
+        // font-weight: bolder;
+    }
+    cursor: default;
+}
+
+.team {
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+
+.team:hover {
+    top: -10px;
+    p {
+        transition: ease 0.5s;
+        color: #F05F40;
+        font-weight: bold;
+    }
+    cursor: default;
+}
+
+

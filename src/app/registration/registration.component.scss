@@ -1,0 +1,79 @@
+.login-register {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 0.8;
+    overflow-x: hidden;
+  }
+  
+  .login-box {
+    width: 320px;
+    margin-left: 38%
+  }
+  
+  #recoverform {
+    display: none;
+  }
+
+  .card {
+    margin-top: 100px;
+    margin-bottom: 30px;
+    background-color: white;
+    
+    text-align: center;
+    border-radius: 10px;
+  }
+
+  .box-title {
+    text-align: left;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 22px;
+  }
+
+  .form-control {
+    padding: 14px 8px;
+    margin-left: 0% !important;
+    margin-bottom: 7% !important;
+    width: 90%;
+    margin: 0;
+    border-radius: 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+  }
+
+  .btn {
+    background-color: #F05F40;
+    color: white;
+    padding: 6%;
+    padding-bottom: 5%;
+    margin-left: -5% !important;
+    margin-bottom: 5% !important;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .container {
+    margin-top: 10%;
+    margin-left: 4%;
+  }
+
+  .container-2 {
+    margin-top: 20%;
+  }
+
+  .text-info {
+    text-decoration: none;
+    color: #F05F40;
+  }
+
+  @import "../../assets/css/creative.css";
